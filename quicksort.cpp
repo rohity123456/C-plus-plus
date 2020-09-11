@@ -21,8 +21,16 @@ void quicksort(vector<int> &unsortedArray, int start, int end)
             right--;
     }
     swap(unsortedArray[pivot], unsortedArray[right]);
-    quicksort(unsortedArray, start, right - 1);
-    quicksort(unsortedArray, right + 1, end);
+    if (((right - 1) - start) < (end - (right + 1)))
+    {
+        quicksort(unsortedArray, start, right - 1);
+        quicksort(unsortedArray, right + 1, end);
+    }
+    else
+    {
+        quicksort(unsortedArray, right + 1, end);
+        quicksort(unsortedArray, start, right - 1);
+    }
 }
 
 int main()
